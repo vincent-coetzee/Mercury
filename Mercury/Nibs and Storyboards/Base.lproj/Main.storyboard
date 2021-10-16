@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-ExtraBold.ttf">
+            <string>OpenSans-Extrabold</string>
+        </array>
+        <array key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Mercury" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MERCURY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ci-py-9nk">
+                                <rect key="frame" x="118" y="44" width="178" height="49.5"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="36"/>
+                                <color key="textColor" name="HighlightColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="news when you want it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baB-Mt-Ieg">
+                                <rect key="frame" x="115" y="90.5" width="184" height="25"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nZD-dm-OgF">
+                                <rect key="frame" x="0.0" y="159.5" width="414" height="702.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States of America" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id1-Hb-zY2">
+                                <rect key="frame" x="87" y="123.5" width="240" height="28"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nZD-dm-OgF" secondAttribute="trailing" id="09T-zH-Qhg"/>
+                            <constraint firstItem="baB-Mt-Ieg" firstAttribute="top" secondItem="0ci-py-9nk" secondAttribute="bottom" constant="-3" id="8fK-io-KIV"/>
+                            <constraint firstItem="nZD-dm-OgF" firstAttribute="top" secondItem="id1-Hb-zY2" secondAttribute="bottom" constant="8" symbolic="YES" id="9Nc-h6-Eqc"/>
+                            <constraint firstItem="nZD-dm-OgF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9cH-7j-QRS"/>
+                            <constraint firstItem="0ci-py-9nk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9ex-Gb-nXm"/>
+                            <constraint firstItem="0ci-py-9nk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="44" id="Dvg-kE-XX2"/>
+                            <constraint firstAttribute="bottom" secondItem="nZD-dm-OgF" secondAttribute="bottom" constant="34" id="Ttt-1H-D9r"/>
+                            <constraint firstItem="id1-Hb-zY2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Z4h-7w-G52"/>
+                            <constraint firstItem="baB-Mt-Ieg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gZD-9r-mm6"/>
+                            <constraint firstItem="id1-Hb-zY2" firstAttribute="top" secondItem="baB-Mt-Ieg" secondAttribute="bottom" constant="8" symbolic="YES" id="sTe-7e-1Gh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="countryLabel" destination="id1-Hb-zY2" id="Kse-Ph-iHv"/>
+                        <outlet property="tableView" destination="nZD-dm-OgF" id="6YS-AM-HXX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--Country Picker View Controller-->
+        <scene sceneID="0WY-Ug-HoA">
+            <objects>
+                <viewController storyboardIdentifier="CountryPickerViewController" id="kLr-Hu-rLk" customClass="CountryPickerViewController" customModule="Mercury" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9JO-my-mdL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoA-hr-p16">
+                                <rect key="frame" x="0.0" y="131" width="414" height="732"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select a country to view it's news headlines." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atJ-dZ-VMy">
+                                <rect key="frame" x="20" y="81" width="374" height="54.5"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                <color key="textColor" name="HighlightColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z3s-fq-roC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SoA-hr-p16" firstAttribute="trailing" secondItem="z3s-fq-roC" secondAttribute="trailing" id="1fi-qU-Mey"/>
+                            <constraint firstItem="SoA-hr-p16" firstAttribute="bottom" secondItem="z3s-fq-roC" secondAttribute="bottom" constant="1" id="5Ni-np-KqH"/>
+                            <constraint firstItem="SoA-hr-p16" firstAttribute="leading" secondItem="z3s-fq-roC" secondAttribute="leading" id="UsH-Ga-j5o"/>
+                            <constraint firstItem="SoA-hr-p16" firstAttribute="top" secondItem="atJ-dZ-VMy" secondAttribute="bottom" constant="-4.5" id="VrW-Q1-ate"/>
+                            <constraint firstItem="z3s-fq-roC" firstAttribute="trailing" secondItem="atJ-dZ-VMy" secondAttribute="trailing" constant="20" id="cLn-sr-rkc"/>
+                            <constraint firstItem="atJ-dZ-VMy" firstAttribute="top" secondItem="z3s-fq-roC" secondAttribute="top" constant="37" id="qpi-28-fRm"/>
+                            <constraint firstItem="atJ-dZ-VMy" firstAttribute="leading" secondItem="z3s-fq-roC" secondAttribute="leading" constant="20" id="yZl-Lu-ReI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="countryPicker" destination="SoA-hr-p16" id="8Kh-kF-Sg1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aVT-zi-Xrh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1021.7391304347827" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="HighlightColor">
+            <color red="0.92941176470588238" green="0.43529411764705883" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
