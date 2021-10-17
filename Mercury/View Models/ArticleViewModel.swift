@@ -26,6 +26,21 @@ internal struct ArticleViewModel
         
     internal static let kConcurrentQueue = DispatchQueue(label: "com.macsemantics.queue",attributes: .concurrent)
     
+    internal var title: String
+        {
+        return(self.article.title)
+        }
+        
+    internal var publishedAt: Date
+        {
+        return(self.article.publishedAt)
+        }
+        
+    internal var urlToImage: URL?
+        {
+        return(self.article.urlToImage.isNil ? nil : URL(string: self.article.urlToImage!))
+        }
+        
     private let article: Article
     
     init(article: Article)
@@ -41,9 +56,9 @@ internal struct ArticleViewModel
     ///
     internal func configure(cell: ArticleTableViewCell)
         {
-        cell.titleView.text = self.article.title
+        cell.titleView.text = self.title
         cell.titleView.sizeToFit()
-        cell.dateView.text = Self.kDateFormatter.string(from: self.article.publishedAt)
+        cell.dateView.text = Self.kDateFormatter.string(from: self.publishedAt)
         cell.pictureView.image = UIImage(named: "NoImage")!
         self.loadArticleImage
             {
@@ -65,7 +80,7 @@ internal struct ArticleViewModel
     ///
     internal func loadArticleImage(_ completion: @escaping (UIImage?) -> Void)
         {
-        if let string = self.article.urlToImage,let url = URL(string: string)
+        if let url = self.urlToImage
             {
             Self.kConcurrentQueue.async
                 {

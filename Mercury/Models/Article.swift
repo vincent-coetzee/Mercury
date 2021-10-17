@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct Article: Decodable
+internal struct Article: Decodable,Equatable
     {
     public let title: String
     public let description: String?

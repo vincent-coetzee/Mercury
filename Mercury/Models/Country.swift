@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct Country
+internal struct Country: Equatable
     {
     internal let code: String
     internal let name: String

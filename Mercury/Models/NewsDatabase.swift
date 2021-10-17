@@ -22,6 +22,8 @@ internal class NewsDatabase: AbstractModel,Dependent
     private static let kNewsAPIKeyQueryString = "apiKey=\(NewsDatabase.kNewsAPIKey)"
     private static let kNewsAPIBaseString = "https://newsapi.org/v2/top-headlines"
 
+    internal private(set) var articles = Articles()
+    
     internal func fetchNewsForCountry(withCode code: String)
         {
         var components = URLComponents(string: Self.kNewsAPIBaseString)
@@ -49,6 +51,7 @@ internal class NewsDatabase: AbstractModel,Dependent
                             let decoder = JSONDecoder()
                             decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                             let response = try decoder.decode(ArticleQueryResponse.self, from: data)
+                            self.articles = response.articles
                             self.changed(aspect: .articles(response.articles))
                             }
                         catch let error

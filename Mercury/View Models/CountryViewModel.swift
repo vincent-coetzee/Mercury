@@ -11,7 +11,7 @@ public class CountryViewModel: Dependent
     {
     internal let key = DependentKey()
     
-    private var countryName: String
+    internal var countryName: String
         {
         return(self.countryModel.countryName)
         }
@@ -29,10 +29,6 @@ public class CountryViewModel: Dependent
         {
         label.text = self.countryName
         self.label = label
-        }
-        
-    @objc func onCountryTapped(_ sender: Any?)
-        {
         }
         
     internal func update(aspect: Aspect,from: Model)
