@@ -7,55 +7,21 @@
 
 import UIKit
 
-internal class CountriesViewModel: NSObject
-    {
-    private let countryModel: CountryModel
-    
-    init(countryModel: CountryModel)
-        {
-        self.countryModel = countryModel
-        }
-        
-    internal func configure(view: UIPickerView)
-        {
-        view.dataSource = self
-        view.delegate = self
-        view.reloadComponent(0)
-        }
-    }
-    
-extension CountriesViewModel: UIPickerViewDelegate
-    {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-        {
-        return(self.countryModel.countries[row].name)
-        }
-    }
-    
-extension CountriesViewModel: UIPickerViewDataSource
-    {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int
-        {
-        1
-        }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-        {
-        self.countryModel.countries.count
-        }
-    }
-    
 class CountryPickerViewController: UIViewController
     {
     @IBOutlet var countryPicker: UIPickerView!
-
+    @IBOutlet var buttonView: UIButton!
+    
     private var countriesViewModel: CountriesViewModel!
+    private var countrySelectionButtonViewModel: CountrySelectionButtonViewModel!
+    private var selectedCountry: Country?
     
     internal var countryModel: CountryModel!
         {
         didSet
             {
             self.initViewModels()
+            self.initViews()
             }
         }
     
@@ -70,9 +36,54 @@ class CountryPickerViewController: UIViewController
             }
         }
         
+    private func initViews()
+        {
+        self.countryPicker.delegate = self
+        var row = 0
+        let code = self.countryModel.country!.code
+        let countries = self.countryModel.countries
+        for index in 0..<countries.count
+            {
+            if countries[index].code == code
+                {
+                row = index
+                break
+                }
+            }
+        self.countryPicker.selectRow(row, inComponent: 0, animated: true)
+        }
+        
     private func initViewModels()
         {
         self.countriesViewModel = CountriesViewModel(countryModel: countryModel)
         self.countriesViewModel.configure(view: self.countryPicker)
+        self.countrySelectionButtonViewModel = CountrySelectionButtonViewModel()
+        self.countrySelectionButtonViewModel.country = self.countryModel.country!
+        self.countrySelectionButtonViewModel.configure(button: self.buttonView)
+        }
+        
+    @IBAction func onButtonTapped(_ sender: Any?)
+        {
+        if let country = self.selectedCountry
+            {
+            self.countryModel.setCountry(country)
+            self.dismiss(animated: true)
+            }
+        }
+    }
+
+extension CountryPickerViewController: UIPickerViewDelegate
+    {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+        {
+        return(self.countriesViewModel.countries[row].name)
+        }
+        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+        {
+        let selectedCountry = self.countryModel.countries[row]
+        self.countrySelectionButtonViewModel.country = selectedCountry
+        self.countrySelectionButtonViewModel.configure(button: self.buttonView)
+        self.selectedCountry = selectedCountry
         }
     }

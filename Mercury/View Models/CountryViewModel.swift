@@ -7,28 +7,39 @@
 
 import UIKit
 
-public class CountryViewModel
+public class CountryViewModel: Dependent
     {
+    internal let key = DependentKey()
+    
     private var countryName: String
         {
         return(self.countryModel.countryName)
         }
         
     private let countryModel: CountryModel
+    private var label: UILabel!
     
     init(countryModel: CountryModel)
         {
         self.countryModel = countryModel
+        self.countryModel.addDependent(self)
         }
         
     public func configure(label: UILabel)
         {
         label.text = self.countryName
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(CountryViewModel.onCountryTapped(_:)))
-        label.addGestureRecognizer(recognizer)
+        self.label = label
         }
         
     @objc func onCountryTapped(_ sender: Any?)
         {
+        }
+        
+    internal func update(aspect: Aspect,from: Model)
+        {
+        if case let Aspect.country(aCountry) = aspect
+            {
+            self.label.text = aCountry.name
+            }
         }
     }

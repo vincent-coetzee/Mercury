@@ -20,7 +20,7 @@ public class CountryModel: AbstractModel, Dependent
         }
         
     internal var key = DependentKey()
-    private var country: Country?
+    internal private(set) var country: Country?
     
     internal func update(aspect: Aspect,from: Model)
         {
@@ -31,8 +31,9 @@ public class CountryModel: AbstractModel, Dependent
         self.changed(aspect: aspect)
         }
         
-    internal func setCountry(_ countryName: String)
+    internal func setCountry(_ country: Country)
         {
-        
+        self.country = country
+        self.changed(aspect: .country(country))
         }
     }

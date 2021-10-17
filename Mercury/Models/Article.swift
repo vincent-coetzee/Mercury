@@ -11,8 +11,8 @@ internal struct Article: Decodable
     {
     public let title: String
     public let description: String?
-    public let url: URL
-    public let urlToImage: URL?
+    public let url: String
+    public let urlToImage: String?
     public let publishedAt: Date
     public let content: String?
     }

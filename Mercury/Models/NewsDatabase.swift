@@ -14,12 +14,14 @@ import Foundation
 /// management from scratch. It publishes the .articles aspect.
 ///
 ///
-internal class NewsDatabase: AbstractModel
+internal class NewsDatabase: AbstractModel,Dependent
     {
-    public static let kNewsAPIKey = "e7bcfc5a4e0c41ac80e32e8e0f1cbccb"
-    public static let kNewsAPIKeyQueryString = "apiKey=\(NewsDatabase.kNewsAPIKey)"
-    public static let kNewsAPIBaseString = "https://newsapi.org/v2/top-headlines"
+    internal let key = DependentKey()
     
+    private static let kNewsAPIKey = "e7bcfc5a4e0c41ac80e32e8e0f1cbccb"
+    private static let kNewsAPIKeyQueryString = "apiKey=\(NewsDatabase.kNewsAPIKey)"
+    private static let kNewsAPIBaseString = "https://newsapi.org/v2/top-headlines"
+
     internal func fetchNewsForCountry(withCode code: String)
         {
         var components = URLComponents(string: Self.kNewsAPIBaseString)
@@ -36,7 +38,7 @@ internal class NewsDatabase: AbstractModel
                     let message = "Querying the News API failed. Please see the log for more details."
                     self.changed(aspect: .error(message))
                     print("ERROR QUERYING THE NEWS API")
-                    print(error)
+                    print("\(error!)")
                     }
                 else
                     {
@@ -55,6 +57,10 @@ internal class NewsDatabase: AbstractModel
                             self.changed(aspect: .error(message))
                             print("UNABLE TO DECODE THE JSON STRING ERROR \(error)")
                             print(error)
+                            if let string = String(data: data,encoding: .utf8)
+                                {
+                                print(string)
+                                }
                             }
                         }
                     else
@@ -66,6 +72,15 @@ internal class NewsDatabase: AbstractModel
                     }
                 }
             dataTask.resume()
+            }
+        }
+        
+    internal func update(aspect: Aspect,from: Model)
+        {
+        if case let Aspect.country(aCountry) = aspect
+            {
+            let code = aCountry.code.lowercased()
+            self.fetchNewsForCountry(withCode: code)
             }
         }
     }

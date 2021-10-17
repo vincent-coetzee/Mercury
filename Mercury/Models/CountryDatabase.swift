@@ -12,6 +12,7 @@ public class CountryDatabase: AbstractModel
     internal static let shared = CountryDatabase()
     
     private var countriesByName: Dictionary<String,Country> = [:]
+    private var countriesByCode: Dictionary<String,Country> = [:]
     
     internal var countries: Countries!
     
@@ -19,6 +20,11 @@ public class CountryDatabase: AbstractModel
         {
         super.init()
         self.loadDatabase()
+        }
+        
+    internal func country(atCode: String) -> Country?
+        {
+        self.countriesByCode[atCode]
         }
         
     private func loadDatabase()
@@ -42,6 +48,7 @@ public class CountryDatabase: AbstractModel
                     currentIndex = line.index(startIndex,offsetBy: 1)
                     let code = String(line[startIndex...currentIndex])
                     self.countriesByName[name] = Country(code: code,name: name)
+                    self.countriesByCode[code] = Country(code: code,name: name)
                     }
                 else if !line.isEmpty
                     {
@@ -49,6 +56,7 @@ public class CountryDatabase: AbstractModel
                     let name = pieces[0]
                     let code = pieces[1]
                     self.countriesByName[name] = Country(code: code,name: name)
+                    self.countriesByCode[code] = Country(code: code,name: name)
                     }
                 }
             self.countries = self.countriesByName.values.sorted{$0.name < $1.name}

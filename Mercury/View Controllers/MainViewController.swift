@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController
     {
+    private static let kArticleViewControllerIdentifier = "ArticleViewController"
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var countryLabel: UILabel!
     
@@ -16,6 +18,7 @@ class MainViewController: UIViewController
     private let countryDatabase = CountryDatabase()
     private var tableViewModel: TableViewViewModel!
     private var countryModel: CountryModel!
+    private var countryViewModel: CountryViewModel!
     
     override func viewDidLoad()
         {
@@ -28,6 +31,8 @@ class MainViewController: UIViewController
     private func initModels()
         {
         self.countryModel = CountryModel()
+        self.countryModel.setCountry(self.countryDatabase.country(atCode: "ZA")!)
+        self.countryModel.addDependent(self.newsDatabase)
         }
         
     private func initViews()
@@ -35,6 +40,7 @@ class MainViewController: UIViewController
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.onCountryTapped(_:)))
         self.countryLabel.isUserInteractionEnabled = true
         self.countryLabel.addGestureRecognizer(recognizer)
+        self.tableView.delegate = self
         }
         
     @objc func onCountryTapped(_ sender: Any?)
@@ -50,6 +56,8 @@ class MainViewController: UIViewController
         {
         self.tableViewModel = TableViewViewModel(model: self.newsDatabase)
         self.tableViewModel.configure(tableView: self.tableView)
+        self.countryViewModel = CountryViewModel(countryModel: self.countryModel)
+        self.countryViewModel.configure(label: self.countryLabel)
         }
     
     @IBAction func onArticleSelected(_ sender: Any?)
@@ -68,3 +76,15 @@ class MainViewController: UIViewController
         }
     }
 
+extension MainViewController: UITableViewDelegate
+    {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+        {
+        let selectedArticle = self.tableViewModel.articles[indexPath.row]
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: Self.kArticleViewControllerIdentifier) as? ArticleViewController
+            {
+            self.present(controller, animated: true)
+            controller.article = selectedArticle
+            }
+        }
+    }

@@ -16,21 +16,21 @@ internal class TableViewViewModel: NSObject
     internal weak var tableView: UITableView?
     internal var delegateTarget: NSObject?
     internal var delegateAction: Selector?
-    private var articles = Articles()
-    private let model: NewsDatabase
+    internal private(set) var articles = Articles()
+    private var model: NewsDatabase
     
     init(model: NewsDatabase)
         {
         self.model = model
         super.init()
-        model.addDependent(self)
+        self.model.addDependent(self)
         self.model.fetchNewsForCountry(withCode: "za")
         }
         
     internal func configure(tableView: UITableView)
         {
         tableView.dataSource = self
-        tableView.delegate = self
+        tableView.rowHeight = 100
         self.tableView = tableView
         let nib = UINib(nibName: Self.kArticleTableViewCellIdentifier, bundle: nil)
         self.tableView?.register(nib, forCellReuseIdentifier: Self.kArticleTableViewCellIdentifier)
@@ -61,6 +61,9 @@ extension TableViewViewModel: UITableViewDataSource
         {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Self.kArticleTableViewCellIdentifier) as? ArticleTableViewCell
             {
+            let view = UIView()
+            view.backgroundColor = UIColor(named: "HighlightColor")
+            cell.selectedBackgroundView = view
             let model = ArticleViewModel(article: self.articles[indexPath.row])
             model.configure(cell: cell)
             return(cell)
@@ -69,9 +72,4 @@ extension TableViewViewModel: UITableViewDataSource
         }
     }
     
-extension TableViewViewModel: UITableViewDelegate
-    {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-        {
-        }
-    }
+

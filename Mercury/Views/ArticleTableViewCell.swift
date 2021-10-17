@@ -13,6 +13,14 @@ class ArticleTableViewCell: UITableViewCell
     @IBOutlet var dateView: UILabel!
     @IBOutlet var pictureView: UIImageView!
     
+    internal override func awakeFromNib()
+        {
+        super.awakeFromNib()
+        self.pictureView.layer.cornerRadius = 10
+        self.pictureView.layer.masksToBounds = true
+        self.titleView.isUserInteractionEnabled = false
+        }
+        
     public override func prepareForReuse()
         {
         self.pictureView.image = nil

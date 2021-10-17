@@ -17,14 +17,14 @@ internal struct ArticleViewModel
     /// to how some Java pundits do it which is by centralising them on Interfaces or Classes.
     ///
     /// 
-    private static let kDateFormatter: DateFormatter =
+    internal static let kDateFormatter: DateFormatter =
         {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy HH:mm"
         return(formatter)
         }()
         
-    private static let kConcurrentQueue = DispatchQueue(label: "com.macsemantics.queue",attributes: .concurrent)
+    internal static let kConcurrentQueue = DispatchQueue(label: "com.macsemantics.queue",attributes: .concurrent)
     
     private let article: Article
     
@@ -65,7 +65,7 @@ internal struct ArticleViewModel
     ///
     internal func loadArticleImage(_ completion: @escaping (UIImage?) -> Void)
         {
-        if let url = self.article.urlToImage
+        if let string = self.article.urlToImage,let url = URL(string: string)
             {
             Self.kConcurrentQueue.async
                 {

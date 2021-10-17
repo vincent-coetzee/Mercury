@@ -7,6 +7,10 @@
 
 import Foundation
 
+///
+///
+/// An abstract model provides the basic machinery for managing
+/// dependents. This is provided 
 public class AbstractModel: Model
     {
     private var dependents: Dictionary<DependentKey,Dependent> = [:]
