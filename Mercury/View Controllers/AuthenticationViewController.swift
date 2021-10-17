@@ -57,6 +57,7 @@ class AuthenticationViewController: UIViewController
                 let controller = UIAlertController(title: "Success",message: "You were successfully registered.",preferredStyle: .alert)
                 controller.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
                 self.present(controller,animated: true)
+                self.loggedInModel.loggedIn = true
                 self.dismiss(animated: true)
                 }
             }
