@@ -167,19 +167,19 @@
 		BF05EEF1271B01D0009D02A6 /* Mercury */ = {
 			isa = PBXGroup;
 			children = (
-				BF05EF63271B78E6009D02A6 /* Nibs and Storyboards */,
-				BF05EF62271B78D8009D02A6 /* View Controllers */,
-				BF05EF5B271B5F22009D02A6 /* Views */,
-				BF05EF56271B55CE009D02A6 /* View Models */,
-				BF05EF3B271B4BDE009D02A6 /* Font Resources */,
-				BF05EF38271B2635009D02A6 /* System Extensions */,
-				BF05EF25271B08DF009D02A6 /* View Model Binding */,
-				BF05EF22271B0720009D02A6 /* Models */,
 				BF05EEF2271B01D0009D02A6 /* AppDelegate.swift */,
-				BF05EEF4271B01D0009D02A6 /* SceneDelegate.swift */,
 				BF05EEFB271B01D1009D02A6 /* Assets.xcassets */,
-				BF05EF00271B01D1009D02A6 /* Info.plist */,
 				BF05EF50271B4E33009D02A6 /* countries.csv */,
+				BF05EF3B271B4BDE009D02A6 /* Font Resources */,
+				BF05EF00271B01D1009D02A6 /* Info.plist */,
+				BF05EF22271B0720009D02A6 /* Models */,
+				BF05EF63271B78E6009D02A6 /* Nibs and Storyboards */,
+				BF05EEF4271B01D0009D02A6 /* SceneDelegate.swift */,
+				BF05EF38271B2635009D02A6 /* System Extensions */,
+				BF05EF62271B78D8009D02A6 /* View Controllers */,
+				BF05EF25271B08DF009D02A6 /* View Model Binding */,
+				BF05EF56271B55CE009D02A6 /* View Models */,
+				BF05EF5B271B5F22009D02A6 /* Views */,
 			);
 			path = Mercury;
 			sourceTree = "<group>";
@@ -204,12 +204,12 @@
 		BF05EF22271B0720009D02A6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BF05EF23271B073A009D02A6 /* NewsDatabase.swift */,
-				BF05EF30271B0C98009D02A6 /* CountryModel.swift */,
 				BF05EF32271B194B009D02A6 /* Article.swift */,
 				BF05EF36271B25E7009D02A6 /* ArticleQueryResponse.swift */,
-				BF05EF52271B4F81009D02A6 /* CountryDatabase.swift */,
 				BF05EF59271B59DC009D02A6 /* Country.swift */,
+				BF05EF52271B4F81009D02A6 /* CountryDatabase.swift */,
+				BF05EF30271B0C98009D02A6 /* CountryModel.swift */,
+				BF05EF23271B073A009D02A6 /* NewsDatabase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,11 +217,11 @@
 		BF05EF25271B08DF009D02A6 /* View Model Binding */ = {
 			isa = PBXGroup;
 			children = (
+				BF05EF2E271B0C29009D02A6 /* AbstractModel.swift */,
 				BF05EF2A271B09FB009D02A6 /* Aspect.swift */,
 				BF05EF26271B08FF009D02A6 /* Dependent.swift */,
 				BF05EF2C271B0A97009D02A6 /* DependentKey.swift */,
 				BF05EF28271B0924009D02A6 /* Model.swift */,
-				BF05EF2E271B0C29009D02A6 /* AbstractModel.swift */,
 			);
 			path = "View Model Binding";
 			sourceTree = "<group>";
@@ -254,13 +254,13 @@
 		BF05EF56271B55CE009D02A6 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				BF05EF57271B55E8009D02A6 /* TableViewViewModel.swift */,
 				BF05EF5E271B6112009D02A6 /* ArticleViewModel.swift */,
-				BF05EF66271B7A15009D02A6 /* CountryViewModel.swift */,
 				BFF6C9C3271C310B0045E370 /* CountriesViewModel.swift */,
 				BFF6C9C5271C378E0045E370 /* CountrySelectionButtonViewModel.swift */,
-				BFF6C9C9271C48FE0045E370 /* StringViewModel.swift */,
+				BF05EF66271B7A15009D02A6 /* CountryViewModel.swift */,
 				BFF6C9CB271C56A20045E370 /* ImageViewModel.swift */,
+				BFF6C9C9271C48FE0045E370 /* StringViewModel.swift */,
+				BF05EF57271B55E8009D02A6 /* TableViewViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -276,9 +276,9 @@
 		BF05EF62271B78D8009D02A6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BF05EEF6271B01D0009D02A6 /* MainViewController.swift */,
-				BF05EF64271B793B009D02A6 /* CountryPickerViewController.swift */,
 				BFF6C9C7271C458E0045E370 /* ArticleViewController.swift */,
+				BF05EF64271B793B009D02A6 /* CountryPickerViewController.swift */,
+				BF05EEF6271B01D0009D02A6 /* MainViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

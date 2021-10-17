@@ -7,9 +7,12 @@
 
 import UIKit
 
-class MainViewController: UIViewController
+class MainViewController: UIViewController, Dependent
     {
+    internal var key = DependentKey()
+    
     private static let kArticleViewControllerIdentifier = "ArticleViewController"
+    private static let kPreferencesItemName = "CountryCode"
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var countryLabel: UILabel!
@@ -26,6 +29,11 @@ class MainViewController: UIViewController
         self.initModels()
         self.initViews()
         self.initViewModels()
+        if let countryCode = UserDefaults.standard.string(forKey: Self.kPreferencesItemName),let country = self.countryDatabase.country(atCode: countryCode)
+            {
+            self.countryModel.setCountry(country)
+            }
+        self.countryModel.addDependent(self)
         }
         
     private func initModels()
@@ -59,19 +67,13 @@ class MainViewController: UIViewController
         self.countryViewModel = CountryViewModel(countryModel: self.countryModel)
         self.countryViewModel.configure(label: self.countryLabel)
         }
-    
-    @IBAction func onArticleSelected(_ sender: Any?)
-        {
-        }
         
     internal func update(aspect: Aspect,from: Model)
         {
-        if case let Aspect.articles(articles) = aspect
+        if case let Aspect.country(country) = aspect
             {
-            for article in articles
-                {
-                print(article.title)
-                }
+            UserDefaults.standard.set(country.code, forKey: Self.kPreferencesItemName)
+            UserDefaults.standard.synchronize()
             }
         }
     }
