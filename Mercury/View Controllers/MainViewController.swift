@@ -12,6 +12,8 @@ class MainViewController: UIViewController, Dependent
     internal var key = DependentKey()
     
     private static let kArticleViewControllerIdentifier = "ArticleViewController"
+    private static let kAuthenticationViewControllerIdentifier = "AuthenticationViewController"
+    
     private static let kPreferencesItemName = "CountryCode"
     
     @IBOutlet var tableView: UITableView!
@@ -22,6 +24,8 @@ class MainViewController: UIViewController, Dependent
     private var tableViewModel: TableViewViewModel!
     private var countryModel: CountryModel!
     private var countryViewModel: CountryViewModel!
+    private var loggedInModel: LoggedInModel!
+    private var authenticationController: AuthenticationViewController!
     
     override func viewDidLoad()
         {
@@ -36,11 +40,30 @@ class MainViewController: UIViewController, Dependent
         self.countryModel.addDependent(self)
         }
         
+    override func viewDidAppear(_ animated: Bool)
+        {
+        super.viewDidAppear(animated)
+        guard !self.loggedInModel.loggedIn else
+            {
+            return
+            }
+        if let authenticationController = self.storyboard?.instantiateViewController(withIdentifier: Self.kAuthenticationViewControllerIdentifier) as? AuthenticationViewController
+            {
+            authenticationController.loggedInModel = self.loggedInModel
+            authenticationController.modalPresentationStyle = .fullScreen
+            authenticationController.modalTransitionStyle = .flipHorizontal
+            self.present(authenticationController, animated: true)
+            self.authenticationController = authenticationController
+            }
+        }
+        
     private func initModels()
         {
         self.countryModel = CountryModel()
         self.countryModel.setCountry(self.countryDatabase.country(atCode: "ZA")!)
         self.countryModel.addDependent(self.newsDatabase)
+        self.loggedInModel = LoggedInModel()
+        self.loggedInModel.addDependent(self)
         }
         
     private func initViews()

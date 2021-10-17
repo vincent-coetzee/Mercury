@@ -28,4 +28,5 @@ internal enum Aspect
     case countries(Countries)
     case article(Article)
     case error(String)
+    case loggedIn(Bool)
     }
