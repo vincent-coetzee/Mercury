@@ -218,8 +218,8 @@
 				BF05EF59271B59DC009D02A6 /* Country.swift */,
 				BF05EF52271B4F81009D02A6 /* CountryDatabase.swift */,
 				BF05EF30271B0C98009D02A6 /* CountryModel.swift */,
-				BF05EF23271B073A009D02A6 /* NewsDatabase.swift */,
 				BF982EDE271C83040053BDEC /* LoggedInModel.swift */,
+				BF05EF23271B073A009D02A6 /* NewsDatabase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
